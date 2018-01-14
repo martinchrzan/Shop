@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="ClientApp.Views.UserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter  x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Margin="20">
+            <TextBlock Text="Name" Style="{StaticResource TextBlockBaseStyle}"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource TextBoxBaseStyle}" HorizontalAlignment="Stretch"/>
+            <TextBlock Text="Password" Style="{StaticResource TextBlockBaseStyle}"/>
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource TextBoxBaseStyle}" HorizontalAlignment="Stretch"/>
+
+            <!-- loading control-->
+            <ContentControl Content="{StaticResource LoadingControl}" 
+                            Visibility="{Binding Processing, Converter={StaticResource BoolToVisibilityConverter}}"
+                            VerticalAlignment="Top" 
+                            Margin="250,0,0,0"/>
+            
+            <TextBlock Text="Error!" Foreground="Red" Visibility="{Binding IsError, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Margin="0,0,0,10"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Log in" Command="{Binding LogInUserCommand}" Margin="0,20,0,10"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Register" Command="{Binding RegisterUserCommand}"/>
+        </StackPanel>  
+    </Grid>
+</UserControl>

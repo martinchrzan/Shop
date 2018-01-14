@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ClientApp.Views.ProductItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Border BorderBrush="White" BorderThickness="2" CornerRadius="2" Margin="5">
+    <Grid Margin="5" Height="60">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <TextBlock Text="{Binding Name}" FontWeight="Bold" Style="{StaticResource TextBlockProductStyle}"/>
+            <TextBlock Text="{Binding Description}" FontStyle="Italic" Style="{StaticResource TextBlockProductStyle}"/>
+            <TextBlock Text="{Binding Price}" Style="{StaticResource TextBlockProductStyle}"/>
+        </StackPanel>
+
+            <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                <Button Content="-" Width="25" Style="{StaticResource ButtonStyle}" Command="{Binding RemoveItemCommand}"/>
+            <TextBlock Text="{Binding Count}" FontWeight="Bold" HorizontalAlignment="Center" Width="30" Style="{StaticResource TextBlockProductStyle}"/>
+                <Button Content="+" Width="25" Style="{StaticResource ButtonStyle}" Command="{Binding AddItemCommand}"/>
+        </WrapPanel>
+     </Grid>
+    </Border>
+</UserControl>
